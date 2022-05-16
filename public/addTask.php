@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use Dudoserovich\ToDoPhp\task;
+use Dudoserovich\ToDoPhp\Task;
 use Dudoserovich\ToDoPhp\TaskRepository;
 
 $task = $_POST['task'];
@@ -19,7 +19,7 @@ if ($task == '' || $_POST['deadline'] == '') {
         die();
     }
 
-    if (TaskRepository::store(new task($task, $datetime))) {
+    if (TaskRepository::store(new Task($task, $datetime))) {
         setcookie("typeNoty", "success");
         setcookie("messageNoty", "Задание добавлено");
     } else {

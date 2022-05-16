@@ -12,7 +12,7 @@ class TaskMapper
             if (!$taskByFields->getId()) {
                 $foundTask = PdoAdapter::returnOneRequest('INSERT INTO tasks(task,datetime) VALUES(:task,:datetime)',
                     ['task' => $task->getTask(), 'datetime' => $task->getDateTime()]);
-                return new task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
+                return new Task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
             } else return false;
         } else {
             if ($taskByFields->getTask() != $task->getTask() && $taskByFields->getDatetime() != $task->getDatetime()) {
@@ -39,7 +39,7 @@ class TaskMapper
 
         // получаем наши таски
         foreach ($rows as $row) {
-            $task = new task(
+            $task = new Task(
                 (string)$row['task'],
                 (string)$row['datetime'],
                 (int)$row['id']
@@ -50,22 +50,22 @@ class TaskMapper
         return $tasks;
     }
 
-    public static function getById($id): task
+    public static function getById($id): Task
     {
         $foundTask = PdoAdapter::returnOneRequest('SELECT * FROM `tasks` WHERE `id`=?', [$id]);
 
         if ($foundTask == false)
-            return new task();
-        else return new task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
+            return new Task();
+        else return new Task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
     }
 
-    public static function getByFields($task, $datetime): task
+    public static function getByFields($task, $datetime): Task
     {
         $foundTask = PdoAdapter::returnOneRequest('SELECT * from tasks where task=:task AND datetime=:datetime',
             ['task' => $task, 'datetime' => $datetime]);
 
         if (!$foundTask)
-            return new task();
-        else return new task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
+            return new Task();
+        else return new Task($foundTask['task'], $foundTask['datetime'], $foundTask['id']);
     }
 }

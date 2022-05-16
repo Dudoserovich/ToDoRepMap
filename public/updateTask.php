@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-use Dudoserovich\ToDoPhp\task;
+use Dudoserovich\ToDoPhp\Task;
 use Dudoserovich\ToDoPhp\TaskRepository;
 
 $task = $_POST['task'];
@@ -19,7 +19,7 @@ if ($task == '' || $datetime == '' || $id == '') {
         die();
     }
 
-    if (TaskRepository::store(new task($task, $datetime, (int)$id))) {
+    if (TaskRepository::store(new Task($task, $datetime, (int)$id))) {
         setcookie("typeNoty", "success");
         setcookie("messageNoty", "Задача обновлена");
     } else {

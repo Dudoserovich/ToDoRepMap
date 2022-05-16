@@ -4,12 +4,12 @@ namespace Dudoserovich\ToDoPhp;
 
 class TaskRepository
 {
-    public static function store(task $task)
+    public static function store(Task $task)
     {
         return TaskMapper::save($task);
     }
 
-    public static function remove(task $task)
+    public static function remove(Task $task)
     {
         TaskMapper::remove($task);
     }
@@ -19,12 +19,12 @@ class TaskRepository
         return TaskMapper::getAll();
     }
 
-    public static function getById($id): task
+    public static function getById($id): Task
     {
         return TaskMapper::getById($id);
     }
 
-    public static function getByFields($task, $datetime): task
+    public static function getByFields($task, $datetime): Task
     {
         return TaskMapper::getByFields($task, $datetime);
     }

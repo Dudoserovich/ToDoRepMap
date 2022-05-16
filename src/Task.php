@@ -2,7 +2,7 @@
 
 namespace Dudoserovich\ToDoPhp;
 
-class task
+class Task
 {
     private ?int $id;
     private ?string $task;
