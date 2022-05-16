@@ -13,4 +13,4 @@ if ($id != '') {
     setcookie("messageNoty", "Задача не была удалена");
 }
 
-header('Location: /ToDo');
+header('Location: /ToDoRepMap');
